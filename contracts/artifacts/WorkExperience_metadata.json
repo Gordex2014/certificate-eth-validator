@@ -1,0 +1,144 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Companies",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "details",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isRegistered",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_companyAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "details",
+						"type": "string"
+					}
+				],
+				"name": "addCompany",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"addCompany(address,string,string,string)": {
+					"details": "Adds a new company to the list of companies.",
+					"params": {
+						"_companyAddress": "The address of the company to add."
+					}
+				},
+				"constructor": {
+					"details": "Sets the contract deployer as the admin."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/WorkExperience.sol": "WorkExperience"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/WorkExperience.sol": {
+			"keccak256": "0x8b5ca3f0815b822f9e97989974b0b3fa0973ea8001ad137f05cbfeb52f047836",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a9a89ab40e4a7701d6c6c1263ccaefa485bd7c49793deb5bfcfc62e9fd4797ac",
+				"dweb:/ipfs/QmTp97nDUwN8DYavn6mfTNHqtxvQzt2oYGy6oDkLtYfvB1"
+			]
+		},
+		"libraries/Agents.sol": {
+			"keccak256": "0x52d1d50125e20e07cb0cbe94d5cf0d11e5d99be08e45bc6cbfc1eff7be102f84",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://c064113ae802d4a8c2c8a19315c14023b6db85792e62399acaa665ac68c0cae5",
+				"dweb:/ipfs/QmcV6aqYNwJTRnnq93vppdKofYyE1H9BcycyziKgWpf1cS"
+			]
+		}
+	},
+	"version": 1
+}

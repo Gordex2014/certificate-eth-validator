@@ -1,0 +1,110 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Issuers",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Students",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addressToValidate",
+						"type": "address"
+					}
+				],
+				"name": "isCertificateIssuer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"isCertificateIssuer(address)": {
+					"details": "Verifies if the address is a certificate issuer address",
+					"params": {
+						"_addressToValidate": "The address to validate if it is a certificate issuer address."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Certification.sol": "Certification"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Certification.sol": {
+			"keccak256": "0x909b5d037f8ccf5dbf030747693229ae0e0d3dca36269ba192400765e81f28ab",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://41fed699a3e5a9ec5a9c301d95a295479a1761b6f4f21fc77144fc1e93e27605",
+				"dweb:/ipfs/Qmf9MLsWAEfBhKHJYFS3sjMsTeavKsndoyU33HzHZNDxiK"
+			]
+		}
+	},
+	"version": 1
+}
