@@ -13,12 +13,73 @@ contract WorkExperience {
 
     mapping(address => Agents.Company) public Companies;
     mapping(address => Agents.User) public Employees;
+    mapping(address => Agents.WorkExperience[]) internal WorkExperiences;
+
+    /**
+     * @dev Work Experience event
+     */
+    event WorkExperienceCreated(
+        address indexed company,
+        address indexed workExperience,
+        string companyName,
+        string position
+    );
 
     /**
      * @dev Sets the contract deployer as the admin.
      */
     constructor() {
         admin = msg.sender;
+    }
+
+    /**
+     * @dev Gets the work experiences registered for a specific employee.
+     * @param _employee The employee address.
+     */
+    function getWorkExperiences(address _employee)
+        public
+        view
+        returns (Agents.WorkExperience[] memory)
+    {
+        return WorkExperiences[_employee];
+    }
+
+    /**
+     * @dev Adds work experience to a registered employee, this function can only be called by a company address.
+     * @param _employee Is the address of the employee.
+     * @param _position The position of the employee.
+     * @param _description A description of the job.
+     * @param _startedAt The date when the employee started the job.
+     * @param _endedAt A description of the job.
+     */
+    function addWorkExperience(
+        address _employee,
+        string memory _position,
+        string memory _description,
+        uint256 _startedAt,
+        uint256 _endedAt
+    ) public onlyCompanies {
+        require(_isValidUser(_employee));
+
+        WorkExperiences[_employee].push(
+            Agents.WorkExperience(
+                _position,
+                _description,
+                msg.sender,
+                Companies[msg.sender].name,
+                _employee,
+                _startedAt,
+                _endedAt,
+                true
+            )
+        );
+
+        emit WorkExperienceCreated(
+            msg.sender,
+            _employee,
+            Companies[msg.sender].name,
+            _position
+        );
     }
 
     /**

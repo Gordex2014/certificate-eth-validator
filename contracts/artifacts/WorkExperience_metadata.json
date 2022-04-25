@@ -11,6 +11,37 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "company",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "workExperience",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "companyName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					}
+				],
+				"name": "WorkExperienceCreated",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -48,9 +79,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_companyAddress",
+						"name": "",
 						"type": "address"
-					},
+					}
+				],
+				"name": "Employees",
+				"outputs": [
 					{
 						"internalType": "string",
 						"name": "name",
@@ -58,16 +92,93 @@
 					},
 					{
 						"internalType": "string",
-						"name": "description",
+						"name": "identification",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isRegistered",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_companyAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
-						"name": "details",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_details",
 						"type": "string"
 					}
 				],
 				"name": "addCompany",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_identification",
+						"type": "string"
+					}
+				],
+				"name": "addEmployee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_employee",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_position",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startedAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endedAt",
+						"type": "uint256"
+					}
+				],
+				"name": "addWorkExperience",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -84,19 +195,111 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_employee",
+						"type": "address"
+					}
+				],
+				"name": "getWorkExperiences",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "position",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "company",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "companyName",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "employee",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startedAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endedAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isRegistered",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Agents.WorkExperience[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
+			"events": {
+				"WorkExperienceCreated(address,address,string,string)": {
+					"details": "Work Experience event"
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"addCompany(address,string,string,string)": {
 					"details": "Adds a new company to the list of companies.",
 					"params": {
-						"_companyAddress": "The address of the company to add."
+						"_companyAddress": "The address of the company to add.",
+						"_description": "The description of the company.",
+						"_details": "Some details about the company.",
+						"_name": "The name of the company."
+					}
+				},
+				"addEmployee(string,string)": {
+					"details": "Allows a normal user to register as a employee.",
+					"params": {
+						"_identification": "The identification of the user (eg. ID).",
+						"_name": "The name of the user."
+					}
+				},
+				"addWorkExperience(address,string,string,uint256,uint256)": {
+					"details": "Adds work experience to a registered employee, this function can only be called by a company address.",
+					"params": {
+						"_description": "A description of the job.",
+						"_employee": "Is the address of the employee.",
+						"_endedAt": "A description of the job.",
+						"_position": "The position of the employee.",
+						"_startedAt": "The date when the employee started the job."
 					}
 				},
 				"constructor": {
 					"details": "Sets the contract deployer as the admin."
+				},
+				"getWorkExperiences(address)": {
+					"details": "Gets the work experiences registered for a specific employee.",
+					"params": {
+						"_employee": "The employee address."
+					}
 				}
 			},
 			"version": 1
@@ -124,19 +327,19 @@
 	},
 	"sources": {
 		"contracts/WorkExperience.sol": {
-			"keccak256": "0x8b5ca3f0815b822f9e97989974b0b3fa0973ea8001ad137f05cbfeb52f047836",
+			"keccak256": "0xfc2860a3441bb5f37c8843fa7c4fc95f49149effff637c2eb6e53018b0258aa2",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://a9a89ab40e4a7701d6c6c1263ccaefa485bd7c49793deb5bfcfc62e9fd4797ac",
-				"dweb:/ipfs/QmTp97nDUwN8DYavn6mfTNHqtxvQzt2oYGy6oDkLtYfvB1"
+				"bzz-raw://0eea80c6ca0524d8ad311a835fa514c6a018d748880e9b1f076b6122fb42374c",
+				"dweb:/ipfs/QmdrGGm3G7V3YBFy94MTPAYTnqomuZysEUm4MCozCTsfTs"
 			]
 		},
 		"libraries/Agents.sol": {
-			"keccak256": "0x52d1d50125e20e07cb0cbe94d5cf0d11e5d99be08e45bc6cbfc1eff7be102f84",
+			"keccak256": "0x115a8d36586c051be9c8d24e280d6487b224526de597f25f65dd562c2979e289",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://c064113ae802d4a8c2c8a19315c14023b6db85792e62399acaa665ac68c0cae5",
-				"dweb:/ipfs/QmcV6aqYNwJTRnnq93vppdKofYyE1H9BcycyziKgWpf1cS"
+				"bzz-raw://275634c41124ce296e64dc74901b10ba0e83713464a664e686613b947b599cac",
+				"dweb:/ipfs/QmSvdGTgjH9UfLtaz5JSHE4Vn1kRQ74TRTkU1MyhJ2RFCW"
 			]
 		}
 	},

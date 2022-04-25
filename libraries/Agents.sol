@@ -27,8 +27,9 @@ library Agents {
         string course;
         string description;
         address issuer;
+        string issuerName;
         address student;
-        int256 issuedAt;
+        uint256 issuedAt;
         bool isRegistered;
     }
 
@@ -36,9 +37,10 @@ library Agents {
         string position;
         string description;
         address company;
+        string companyName;
         address employee;
-        int256 startedAt;
-        int256 endedAt;
+        uint256 startedAt;
+        uint256 endedAt;
         bool isRegistered;
     }
 }
