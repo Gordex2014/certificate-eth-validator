@@ -20,6 +20,25 @@
 						"type": "address"
 					},
 					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "companyName",
+						"type": "string"
+					}
+				],
+				"name": "CompanyCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "company",
+						"type": "address"
+					},
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "workExperience",
@@ -40,6 +59,25 @@
 				],
 				"name": "WorkExperienceCreated",
 				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Admins",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -79,29 +117,13 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "_adminAddress",
 						"type": "address"
 					}
 				],
-				"name": "Employees",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "identification",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRegistered",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
+				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -178,22 +200,9 @@
 						"type": "uint256"
 					}
 				],
-				"name": "addWorkExperience",
+				"name": "addUserWorkExperience",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "admin",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -204,7 +213,7 @@
 						"type": "address"
 					}
 				],
-				"name": "getWorkExperiences",
+				"name": "getUserWorkExperiences",
 				"outputs": [
 					{
 						"components": [
@@ -260,12 +269,21 @@
 		],
 		"devdoc": {
 			"events": {
+				"CompanyCreated(address,string)": {
+					"details": "New company added event"
+				},
 				"WorkExperienceCreated(address,address,string,string)": {
 					"details": "Work Experience event"
 				}
 			},
 			"kind": "dev",
 			"methods": {
+				"addAdmin(address)": {
+					"details": "Add a new admin.",
+					"params": {
+						"_adminAddress": "The address of the admin to add."
+					}
+				},
 				"addCompany(address,string,string,string)": {
 					"details": "Adds a new company to the list of companies.",
 					"params": {
@@ -282,7 +300,7 @@
 						"_name": "The name of the user."
 					}
 				},
-				"addWorkExperience(address,string,string,uint256,uint256)": {
+				"addUserWorkExperience(address,string,string,uint256,uint256)": {
 					"details": "Adds work experience to a registered employee, this function can only be called by a company address.",
 					"params": {
 						"_description": "A description of the job.",
@@ -293,9 +311,9 @@
 					}
 				},
 				"constructor": {
-					"details": "Sets the contract deployer as the admin."
+					"details": "Sets the contract deployer as the first admin."
 				},
-				"getWorkExperiences(address)": {
+				"getUserWorkExperiences(address)": {
 					"details": "Gets the work experiences registered for a specific employee.",
 					"params": {
 						"_employee": "The employee address."
@@ -327,19 +345,19 @@
 	},
 	"sources": {
 		"contracts/WorkExperience.sol": {
-			"keccak256": "0xfc2860a3441bb5f37c8843fa7c4fc95f49149effff637c2eb6e53018b0258aa2",
+			"keccak256": "0x2191db5c5baaf10720e304efdb6e2331354893c417330bb02460ba8447addde9",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0eea80c6ca0524d8ad311a835fa514c6a018d748880e9b1f076b6122fb42374c",
-				"dweb:/ipfs/QmdrGGm3G7V3YBFy94MTPAYTnqomuZysEUm4MCozCTsfTs"
+				"bzz-raw://5f757a91a00134664e188780e4909cee6dc8e69fce324106dec3b095c27fbd84",
+				"dweb:/ipfs/QmYpXRWKsKhF7HscHdfxfrxNyLwhRRpJJHhUV5K3Z8HjpN"
 			]
 		},
 		"libraries/Agents.sol": {
-			"keccak256": "0x115a8d36586c051be9c8d24e280d6487b224526de597f25f65dd562c2979e289",
+			"keccak256": "0xb4644bfb897ec4baaa28771c03be4eb29315a8f02fa9a82a6b16c5cf4273fff3",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://275634c41124ce296e64dc74901b10ba0e83713464a664e686613b947b599cac",
-				"dweb:/ipfs/QmSvdGTgjH9UfLtaz5JSHE4Vn1kRQ74TRTkU1MyhJ2RFCW"
+				"bzz-raw://0f3f1309b2d832dda1dbdbec5e35ec3f986f5aeaf34d9dce386caa3034bb0e40",
+				"dweb:/ipfs/QmPtFAhME2WARxjmcTtuib5Ldha4kKJizaYaZaP8m1b7H4"
 			]
 		}
 	},

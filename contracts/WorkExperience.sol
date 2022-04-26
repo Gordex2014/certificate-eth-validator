@@ -30,7 +30,7 @@ contract WorkExperience {
     event CompanyCreated(address indexed company, string companyName);
 
     /**
-     * @dev Sets the contract deployer as the admin.
+     * @dev Sets the contract deployer as the first admin.
      */
     constructor() {
         Admins[msg.sender] = true;
@@ -127,7 +127,7 @@ contract WorkExperience {
      * @dev Add a new admin.
      * @param _adminAddress The address of the admin to add.
      */
-    function addCompany(address _adminAddress) public onlyAdmin {
+    function addAdmin(address _adminAddress) public onlyAdmin {
         require(_isValidCompany(_adminAddress) == false);
         // Sets the admin as registered.
         Admins[_adminAddress] = true;
@@ -142,7 +142,7 @@ contract WorkExperience {
     }
 
     /**
-     * @dev Verifies if the message sender is a registered certificate issuer.
+     * @dev Verifies if the message sender is a registered company.
      */
     modifier onlyCompanies() {
         require(_isValidCompany(msg.sender));
@@ -151,7 +151,7 @@ contract WorkExperience {
 
     /**
      * @dev Verifies if the address is a valid and a registered company.
-     * @param _addressToValidate The address to validate if it is a certificate issuer address.
+     * @param _addressToValidate The address to validate if it is a registered company address.
      */
     function _isValidCompany(address _addressToValidate)
         private
@@ -163,7 +163,7 @@ contract WorkExperience {
 
     /**
      * @dev Verifies if the address is a valid and registered user.
-     * @param _addressToValidate The address to validate if it is a certificate issuer address.
+     * @param _addressToValidate The address to validate if it is a registered user address.
      */
     function _isValidUser(address _addressToValidate)
         private
