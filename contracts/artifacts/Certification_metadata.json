@@ -157,24 +157,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_identification",
-						"type": "string"
-					}
-				],
-				"name": "addStudent",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "_studentAddress",
 						"type": "address"
@@ -255,6 +237,24 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_identification",
+						"type": "string"
+					}
+				],
+				"name": "registerSelfAsStudent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -283,13 +283,6 @@
 						"_adminAddress": "The address of the admin to add."
 					}
 				},
-				"addStudent(string,string)": {
-					"details": "Allows a normal user to register as a student.",
-					"params": {
-						"_identification": "The identification of the user (eg. ID).",
-						"_name": "The name of the user."
-					}
-				},
 				"addUserCertificate(address,string,string,uint256)": {
 					"details": "Adds a certificate to a registered student, this function can only be called by an academy address.",
 					"params": {
@@ -306,6 +299,13 @@
 					"details": "Gets the certificates for an specific student.",
 					"params": {
 						"_studentAddress": "The student address."
+					}
+				},
+				"registerSelfAsStudent(string,string)": {
+					"details": "Allows a normal user to register as a student.",
+					"params": {
+						"_identification": "The identification of the user (eg. ID).",
+						"_name": "The name of the user."
 					}
 				}
 			},
@@ -334,11 +334,11 @@
 	},
 	"sources": {
 		"contracts/Certification.sol": {
-			"keccak256": "0x8930b402f7c1041478fdcfdd4765337c44b363ec5b41ac2127ca2429afc9a4c3",
+			"keccak256": "0x3db36d299b6d3f5e6d06496f7d90b97fc222bfe894a882c288f2f4f277f73b96",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://c8a911463281870133ef8d6b53ff2d23d793ea26d2583d9ace56f63716350495",
-				"dweb:/ipfs/QmZ2GrKKCb2iaT81QJM4mTdLqL6dgoixSC8yDaKjNgtfpb"
+				"bzz-raw://ac303dad3fb9d6c13e1b53f8f28dd8da3ca1febc24cb93306375aa478adcaea4",
+				"dweb:/ipfs/QmeQoqSn7pwCzyZugMQhtcMmaabRRcXPzf3oQxrTHFbQg9"
 			]
 		},
 		"libraries/Agents.sol": {

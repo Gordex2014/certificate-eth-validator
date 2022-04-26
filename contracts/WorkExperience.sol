@@ -91,9 +91,10 @@ contract WorkExperience {
      * @param _name The name of the user.
      * @param _identification The identification of the user (eg. ID).
      */
-    function addEmployee(string memory _name, string memory _identification)
-        public
-    {
+    function registerSelfAsEmployee(
+        string memory _name,
+        string memory _identification
+    ) public {
         require(!_isValidUser(msg.sender));
         Employees[msg.sender] = Agents.User(_name, _identification, true);
     }

@@ -157,24 +157,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_identification",
-						"type": "string"
-					}
-				],
-				"name": "addEmployee",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "_employee",
 						"type": "address"
@@ -265,6 +247,24 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_identification",
+						"type": "string"
+					}
+				],
+				"name": "registerSelfAsEmployee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -293,13 +293,6 @@
 						"_name": "The name of the company."
 					}
 				},
-				"addEmployee(string,string)": {
-					"details": "Allows a normal user to register as a employee.",
-					"params": {
-						"_identification": "The identification of the user (eg. ID).",
-						"_name": "The name of the user."
-					}
-				},
 				"addUserWorkExperience(address,string,string,uint256,uint256)": {
 					"details": "Adds work experience to a registered employee, this function can only be called by a company address.",
 					"params": {
@@ -317,6 +310,13 @@
 					"details": "Gets the work experiences registered for a specific employee.",
 					"params": {
 						"_employee": "The employee address."
+					}
+				},
+				"registerSelfAsEmployee(string,string)": {
+					"details": "Allows a normal user to register as a employee.",
+					"params": {
+						"_identification": "The identification of the user (eg. ID).",
+						"_name": "The name of the user."
 					}
 				}
 			},
@@ -345,11 +345,11 @@
 	},
 	"sources": {
 		"contracts/WorkExperience.sol": {
-			"keccak256": "0x2191db5c5baaf10720e304efdb6e2331354893c417330bb02460ba8447addde9",
+			"keccak256": "0x0278e2e127af055d6f47f8ae1183a8564a3d6e7826cb070ee01de6e31fe293a8",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5f757a91a00134664e188780e4909cee6dc8e69fce324106dec3b095c27fbd84",
-				"dweb:/ipfs/QmYpXRWKsKhF7HscHdfxfrxNyLwhRRpJJHhUV5K3Z8HjpN"
+				"bzz-raw://b9614afc49c4a237772c2f405b411219a9fa7fe27b908730032f5838d34a844a",
+				"dweb:/ipfs/QmcBVZ64doYmrsFkCZDDvkYjqXeNayuJYfnkiN2RZ2JFJF"
 			]
 		},
 		"libraries/Agents.sol": {
