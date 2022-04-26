@@ -5,14 +5,13 @@ pragma solidity >=0.7.0 <0.9.0;
 import {Agents} from "../libraries/Agents.sol";
 
 contract WorkExperience {
-    address public admin;
-
     using Agents for Agents.Company;
     using Agents for Agents.User;
     using Agents for Agents.WorkExperience;
 
+    mapping(address => bool) public Admins;
     mapping(address => Agents.Company) public Companies;
-    mapping(address => Agents.User) public Employees;
+    mapping(address => Agents.User) internal Employees;
     mapping(address => Agents.WorkExperience[]) internal WorkExperiences;
 
     /**
@@ -26,17 +25,22 @@ contract WorkExperience {
     );
 
     /**
+     * @dev New company added event
+     */
+    event CompanyCreated(address indexed company, string companyName);
+
+    /**
      * @dev Sets the contract deployer as the admin.
      */
     constructor() {
-        admin = msg.sender;
+        Admins[msg.sender] = true;
     }
 
     /**
      * @dev Gets the work experiences registered for a specific employee.
      * @param _employee The employee address.
      */
-    function getWorkExperiences(address _employee)
+    function getUserWorkExperiences(address _employee)
         public
         view
         returns (Agents.WorkExperience[] memory)
@@ -52,7 +56,7 @@ contract WorkExperience {
      * @param _startedAt The date when the employee started the job.
      * @param _endedAt A description of the job.
      */
-    function addWorkExperience(
+    function addUserWorkExperience(
         address _employee,
         string memory _position,
         string memory _description,
@@ -115,13 +119,25 @@ contract WorkExperience {
             _details,
             true
         );
+
+        emit CompanyCreated(_companyAddress, _name);
+    }
+
+    /**
+     * @dev Add a new admin.
+     * @param _adminAddress The address of the admin to add.
+     */
+    function addCompany(address _adminAddress) public onlyAdmin {
+        require(_isValidCompany(_adminAddress) == false);
+        // Sets the admin as registered.
+        Admins[_adminAddress] = true;
     }
 
     /**
      * @dev Verifies if the message sender is the admin of the contract.
      */
     modifier onlyAdmin() {
-        require(msg.sender == admin);
+        require(_isValidAdmin(msg.sender));
         _;
     }
 
@@ -155,5 +171,17 @@ contract WorkExperience {
         returns (bool)
     {
         return Employees[_addressToValidate].isRegistered;
+    }
+
+    /**
+     * @dev Verifies if the address is a valid and registered admin.
+     * @param _addressToValidate The address to validate if it is an admin address.
+     */
+    function _isValidAdmin(address _addressToValidate)
+        private
+        view
+        returns (bool)
+    {
+        return Admins[_addressToValidate];
     }
 }
